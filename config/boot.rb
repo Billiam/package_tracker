@@ -55,6 +55,8 @@ Padrino.dependency_paths.unshift Padrino.root('config/initializers/*.rb')
 # These hooks are run before any dependencies are required.
 #
 Padrino.before_load do
+  ENV['TZ'] = 'America/Chicago'
+  Time.zone = 'America/Chicago'
 end
 
 ##
