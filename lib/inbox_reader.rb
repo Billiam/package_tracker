@@ -14,14 +14,8 @@ class InboxReader
     Enumerator.new do |yielder|
       with_connection do |gmail|
         gmail.inbox.emails(:unread).each do |email|
-          # email.read!
-          # email.archive!
+          email.read!
           yielder << Message.new(email.from, email.subject, email.message.body.to_s)
-          # if
-          #   email.label! ENV['PROCESSED_LABEL'] if ENV['PROCESSED_LABEL'].present?
-          # else
-          #   email.label! ENV['UNRECOGNIZED_LABEL'] if ENV['UNRECOGNIZED_LABEL'].present?
-          # end
         end
       end
     end

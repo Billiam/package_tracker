@@ -8,7 +8,7 @@ module EmailTracker
       self.trackers << tracker
     end
 
-    def identify(message)
+    def parse_message(message)
       trackers.each do |tracker|
         result = tracker.tracking_data(message)
 
@@ -18,9 +18,9 @@ module EmailTracker
       nil
     end
 
-    def process(messages)
+    def parse_messages(messages)
       Array(messages).map do |message|
-        identify(message)
+        parse_message(message)
       end.compact
     end
   end
