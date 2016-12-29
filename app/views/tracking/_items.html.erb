@@ -23,7 +23,10 @@
           <div class="status">
             <% if tracking.scheduled? %>
               <div>
-                Scheduled for  <%= tracking.scheduled_for.strftime("%a, %b %e at %R") %>
+                Scheduled for  <%= tracking.scheduled_for.strftime("%a, %b %e") %>
+                <% if tracking.scheduled_for.seconds_since_midnight > 0 %>
+                  at <%= tracking.scheduled_for.strftime("%R") %>
+                <% end %>
               </div>
             <% end %>
           </div>
