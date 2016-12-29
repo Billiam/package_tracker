@@ -32,7 +32,7 @@ class UpdateTrackingWorker
       end
 
       item.raise_on_save_failure = false
-      item.save
+      item.save if item.changed_columns.any?
     end
   end
 end
