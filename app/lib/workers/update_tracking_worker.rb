@@ -17,15 +17,14 @@ class UpdateTrackingWorker
       # if rescheduled_date
       #   parse_date if ups
       # else
-      item.scheduled_for = Time.zone.local_to_utc(tracking_data.scheduled_delivery_time.to_time) if tracking_data.scheduled_delivery_time
-
+      item.scheduled_for = local_time(tracking_data.scheduled_delivery_time) if tracking_data.scheduled_delivery_time
       # end
 
-      item.delivered_at = Time.zone.local_to_utc(tracking_data.actual_delivery_time.to_time) if tracking_data.actual_delivery_time
+      item.delivered_at = local_time(tracking_data.actual_delivery_time) if tracking_data.actual_delivery_time
       item.latest_event = tracking_data.message
       last_event = tracking_data.shipment_events.last
       if last_event
-        time = Time.zone.local_to_utc(last_event.time).strftime("%a, %b %e at %R")
+        time = local_time(last_event.time).strftime("%a, %b %e at %R")
         item.latest_event = "#{last_event.message} #{time} - #{last_event.location}"
       else
         item.latest_event = tracking_data.message
@@ -34,5 +33,11 @@ class UpdateTrackingWorker
       item.raise_on_save_failure = false
       item.save if item.changed_columns.any?
     end
+  end
+
+  private
+
+  def local_time(time)
+    Time.zone.local_to_utc(time.to_time.utc)
   end
 end
