@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:tracking_numbers, :index) %></li>
+  <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:tracking_numbers, :new) %></li>
+</ul>
+<div class="tabs-content">
+  <% form_for :tracking_number, url(:tracking_numbers, :create), :class => 'form-horizontal' do |f| %>
+    <%= partial 'tracking_numbers/form', :locals => { :f => f } %>
+ <% end %>
+</div>

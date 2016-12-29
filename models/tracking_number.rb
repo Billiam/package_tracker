@@ -1,4 +1,5 @@
 class TrackingNumber < Sequel::Model
+  plugin :validation_helpers
   dataset_module do
     def active
       exclude(Sequel.~(status: nil) &  {status: 'delivered'})
@@ -11,6 +12,12 @@ class TrackingNumber < Sequel::Model
     def recently_delivered
       where { delivered_at > 6.days.ago }
     end
+  end
+
+  def validate
+    super
+    validates_presence [:number, :carrier]
+    validates_includes ShipmentTracker.available_clients.map(&:to_s), :carrier
   end
 
   def date
