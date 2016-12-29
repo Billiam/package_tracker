@@ -1,0 +1,11 @@
+<h1>Deliveries</h1>
+
+<% if @active.count > 0 %>
+  <h2>Upcoming</h2>
+  <%= partial 'tracking/items', locals: { tracking_numbers: @active } %>
+<% end %>
+
+<% if @complete.count > 0 %>
+  <h2>Complete</h2>
+  <%= partial 'tracking/items', locals: { tracking_numbers: @complete } %>
+<% end %>

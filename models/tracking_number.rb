@@ -20,4 +20,8 @@ class TrackingNumber < Sequel::Model
   def last_updated
     updated_at || created_at
   end
+
+  def scheduled?
+    scheduled_for && !delivered_at
+  end
 end

@@ -1,0 +1,38 @@
+<ol>
+  <% tracking_numbers.each do |tracking| %>
+    <li class="<%= 'delivered' if tracking.delivered_at %>">
+      <a class="track-block" href="<%= tracking_url(tracking.carrier.to_sym, tracking.number) %>">
+        <div class="date-block">
+          <% if tracking.date %>
+            <span class="day">
+              <%= tracking.date.strftime('%e') %>
+            </span>
+            <span class="month">
+              <%= tracking.date.strftime('%b') %>
+            </span>
+          <% else %>
+            ???
+          <% end %>
+        </div>
+        <div class="track-data">
+          <div class="status-event">
+
+            <%= tracking.latest_event %>
+          </div>
+
+          <div class="status">
+            <% if tracking.scheduled? %>
+              <div>
+                Scheduled for  <%= tracking.scheduled_for.strftime("%a, %b %e at %R") %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="updated">
+            Last updated: <%= tracking.last_updated.strftime("%a, %b %e at %R") %>
+          </div>
+        </div>
+      </a>
+    </li>
+  <% end %>
+</ol>

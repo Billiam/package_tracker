@@ -1,0 +1,64 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: #eee;
+}
+
+body {
+  max-width: 800px;
+  padding: 0 10px;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #1C1619;
+  color: white;
+  line-height: 1.6;
+}
+ol {
+  list-style-type: none;
+  padding: 0;
+}
+.day, .month {
+  width: 80px;
+  text-align: center;
+  display: block;
+}
+.day {
+  font-size: 36px;
+}
+.month {
+  font-weight: bold;
+  font-size: 20px;
+}
+.track-block {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  border: 1px solid #2F2729;
+  background-color: #2F272A;
+  width: 100%;
+}
+.track-block:hover {
+  border-color: #888;
+}
+.date-block {
+  width: 100px;
+  line-height: 1;
+}
+li {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.delivered, .delivered a {
+  color: #aaa;
+}
+.updated {
+  position: absolute;
+  color: #aaa;
+  right: 5px;
+  bottom: 0px;
+  font-style: italic;
+  font-size: 11px;
+}
