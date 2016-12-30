@@ -247,14 +247,9 @@ footer p {
   font-size: 1.3em;
   padding: 4px;
   display: inline-block;
-  visibility: hidden;
 }
 .list-row-action-wrapper-link:hover {
   text-decoration: none;
-}
-.list-row:hover .list-row-action-wrapper-link,
-.list-row:hover .list-row-action-wrapper-link-active {
-  visibility: visible;
 }
 .list-row-action-popover-delete-one {
   left: -120px;

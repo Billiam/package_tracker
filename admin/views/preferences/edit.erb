@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:preferences, :index) %></li>
+  <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:preferences, :edit, :id => @preference.id) %></li>
+</ul>
+<div class="tabs-content">
+  <% form_for :preference, url(:preferences, :update, :id => @preference.id), :method => :put, :class => 'form-horizontal' do |f| %>
+    <%= partial 'preferences/form', :locals => { :f => f } %>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<% error = @preference.errors.key?(:value) && @preference.errors[:value].count > 0 %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :value, :class => 'control-label', caption: f.object.key %>
+  <div class='controls'>
+    <%= f.text_field :value, :class => 'form-control input-xlarge input-with-feedback' %>
+    <span class='help-inline'><%= error ? f.error_message_on(:value) : f.object.description %></span>
+  </div>
+</fieldset>
+
+<div class="form-actions">
+  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:preferences, :index), :class => 'btn btn-default' %>
+</div>

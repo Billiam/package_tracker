@@ -1,36 +1,41 @@
-module ShipmentTracker
-  CLIENTS = {
-    fedex: ActiveShipping::FedEx.new(
-      login: ENV.fetch('FEDEX_LOGIN'),
-      password: ENV.fetch('FEDEX_PASSWORD'),
-      key: ENV.fetch('FEDEX_KEY'),
-      account: ENV.fetch('FEDEX_ACCOUNT'),
-      test: ENV.fetch('FEDEX_TEST', 'false') == 'true'
-    ),
-
-    ups: ActiveShipping::UPS.new(
-      login: ENV.fetch('UPS_LOGIN'),
-      password: ENV.fetch('UPS_PASSWORD'),
-      key: ENV.fetch('UPS_KEY')
-    ),
-
-    usps: ActiveShipping::USPS.new(
-      login: ENV.fetch('USPS_LOGIN')
-    ),
-
-  }
-
-  CLIENTS.each do |name, client|
-    define_singleton_method(name) do
-      client
-    end
-  end
+class ShipmentTracker
+  CLIENTS = [:ups, :fedex, :usps]
 
   def self.available_clients
-    CLIENTS.keys
+    CLIENTS
   end
 
-  def self.[](key)
-    CLIENTS[key]
+  def ups
+    ActiveShipping::UPS.new(
+      login: credentials.UPS_LOGIN,
+      password: credentials.UPS_PASSWORD,
+      key: credentials.UPS_KEY
+    )
+  end
+
+  def fedex
+    ActiveShipping::FedEx.new(
+      login: credentials.FEDEX_LOGIN,
+      password: credentials.FEDEX_PASSWORD,
+      key: credentials.FEDEX_KEY,
+      account: credentials.FEDEX_ACCOUNT,
+      test: credentials.FEDEX_TEST == 'true'
+    )
+  end
+
+  def usps
+    ActiveShipping::USPS.new(
+      login: credentials.USPS_LOGIN
+    )
+  end
+
+  def [](key)
+    self.public_send(key) if CLIENTS.include? key
+  end
+
+  private
+
+  def credentials
+    @credentials ||= Preference.preference_object
   end
 end

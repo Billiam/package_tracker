@@ -1,12 +1,8 @@
 class UpdateTrackingWorker
-  def client
-    InboxReader.new(ENV.fetch('GMAIL_USER'), ENV.fetch('GMAIL_PASSWORD'))
-  end
-
   def perform
     TrackingNumber.active.each do |item|
       begin
-        tracking_data = ShipmentTracker[item.carrier.to_sym].find_tracking_info item.number
+        tracking_data = tracker[item.carrier.to_sym].find_tracking_info item.number
       rescue ActiveShipping::ShipmentNotFound => e
         next
       end
@@ -36,6 +32,10 @@ class UpdateTrackingWorker
   end
 
   private
+
+  def tracker
+    @tracker ||= ShipmentTracker.new
+  end
 
   def local_time(time)
     Time.zone.local_to_utc(time.to_time.utc)

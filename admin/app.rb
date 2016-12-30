@@ -34,6 +34,7 @@ module Trackify
     end
 
     access_control.roles_for :admin do |role|
+      role.project_module :preferences, '/preferences'
       role.project_module :tracking_numbers, '/tracking_numbers'
       role.project_module :accounts, '/accounts'
     end
