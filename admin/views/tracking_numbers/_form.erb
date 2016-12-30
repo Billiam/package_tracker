@@ -3,7 +3,7 @@
   <%= f.label :carrier, :class => 'control-label' %>
   <div class='controls'>
     <%= f.select :carrier, options: ShipmentTracker.available_clients, class: 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:carrier) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= f.error_message_on(:carrier) if error %></span>
   </div>
 </fieldset>
 <% error = @tracking_number.errors.key?(:number) && @tracking_number.errors[:number].count > 0 %>
@@ -11,7 +11,7 @@
   <%= f.label :number, :class => 'control-label' %>
   <div class='controls'>
     <%= f.text_field :number, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:number) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= error ? f.error_message_on(:number) : "Ex: 1Z1234567890" %></span>
   </div>
 </fieldset>
 <% error = @tracking_number.errors.key?(:status) && @tracking_number.errors[:status].count > 0 %>
@@ -19,7 +19,7 @@
   <%= f.label :status, :class => 'control-label' %>
   <div class='controls'>
     <%= f.text_field :status, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:status) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= error ? f.error_message_on(:status) : "Ex: delivered" %></span>
   </div>
 </fieldset>
 <% error = @tracking_number.errors.key?(:scheduled_for) && @tracking_number.errors[:scheduled_for].count > 0 %>
@@ -27,7 +27,7 @@
   <%= f.label :scheduled_for, :class => 'control-label' %>
   <div class='controls'>
     <%= f.datetime_local_field :scheduled_for, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:scheduled_for) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= error ? f.error_message_on(:scheduled_for) : "Date of scheduled delivery" %></span>
   </div>
 </fieldset>
 <% error = @tracking_number.errors.key?(:delivered_at) && @tracking_number.errors[:delivered_at].count > 0 %>
@@ -35,7 +35,7 @@
   <%= f.label :delivered_at, :class => 'control-label' %>
   <div class='controls'>
     <%= f.datetime_local_field :delivered_at, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:delivered_at) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= error ? f.error_message_on(:delivered_at) : "Date of delivery" %></span>
   </div>
 </fieldset>
 <% error = @tracking_number.errors.key?(:latest_event) && @tracking_number.errors[:latest_event].count > 0 %>
@@ -43,7 +43,7 @@
   <%= f.label :latest_event, :class => 'control-label' %>
   <div class='controls'>
     <%= f.text_area :latest_event, :class => 'form-control input-xlarge input-with-feedback' %>
-    <span class='help-inline'><%= error ? f.error_message_on(:latest_event) : "Ex: a simple text" %></span>
+    <span class='help-inline'><%= error ? f.error_message_on(:latest_event) : "Most recent tracking event" %></span>
   </div>
 </fieldset>
 
