@@ -2,6 +2,7 @@
   <% tracking_numbers.each do |tracking| %>
     <li class="<%= 'delivered' if tracking.delivered_at %>">
       <a class="track-block" href="<%= tracking_url(tracking.carrier.to_sym, tracking.number) %>">
+        <% if tracking.status.present? %>
         <div class="date-block">
           <% if tracking.date %>
             <span class="day">
@@ -10,8 +11,6 @@
             <span class="month">
               <%= tracking.date.strftime('%b') %>
             </span>
-          <% else %>
-            ???
           <% end %>
         </div>
         <div class="track-data">
@@ -35,6 +34,11 @@
             Last updated: <%= tracking.last_updated.strftime("%a, %b %e at %R") %>
           </div>
         </div>
+        <% else %>
+        <div class="no-tracking">
+          Tracking information is not yet available for this shipment.
+        </div>
+        <% end %>
       </a>
     </li>
   <% end %>
