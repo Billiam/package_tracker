@@ -37,6 +37,7 @@ gem 'dotenv'
 gem 'gmail'
 gem 'active_shipping'
 
+gem 'webpush'
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
