@@ -12,6 +12,6 @@ class FindTrackingNumbersWorker
   end
 
   def credentials
-    @credentials ||= Preference.prefence_object
+    @credentials ||= Preference.preference_object
   end
 end
