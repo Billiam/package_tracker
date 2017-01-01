@@ -33,12 +33,12 @@ Create api accounts with
 [UPS](https://www.ups.com/upsdeveloperkit), and 
 [USPS](https://www.usps.com/business/web-tools-apis/welcome.htm), and hang onto your credentials.
 
-Register for email shipment notifications to the above Gmail account with 
+Visit `http://localhost:3000/admin/preferences`, and add your api keys and credentials.
+
+Register for email shipment notifications to your notification Gmail account with 
 [FedEx Delivery Manager](https://www.fedex.com/us/delivery), 
 [UPS My Choice](https://www.ups.com/mychoice), and 
 [My USPS](https://my.usps.com).
-
-Visit `http://localhost:3000/admin/preferences`, and add your api keys and credentials.
 
 Create cron tasks which will poll your Gmail inbox and update tracking information:
 
@@ -46,6 +46,14 @@ Create cron tasks which will poll your Gmail inbox and update tracking informati
 */30 * * * * cd /path/to/project && /path/to/bundle exec rake read_mailbox > /dev/null
 */30 * * * * cd /path/to/project && /path/to/bundle exec rake update_tracking > /dev/null
 ```
+
+### [optional] Allow users to opt in to web push notifications
+
+Run `bundle exec rake generate_vapid` and add the resulting
+`VAPID_PUBLIC_KEY` and `VAPID PRIVATE_KEY` values to your `.env` file.
+
+
+## View dashboard
 
 Visit `http://localhost:3000` to view your dashboard.
 
