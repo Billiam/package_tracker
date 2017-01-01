@@ -38,6 +38,11 @@ gem 'gmail'
 gem 'active_shipping'
 
 gem 'webpush'
+
+group :development do
+  gem 'sequel-annotate'
+end
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 

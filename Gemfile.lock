@@ -97,6 +97,8 @@ GEM
     rspec-support (3.5.0)
     sass (3.4.23)
     sequel (4.41.0)
+    sequel-annotate (1.0.0)
+      sequel (>= 4)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -127,6 +129,7 @@ DEPENDENCIES
   rspec
   sass
   sequel
+  sequel-annotate
   webpush
 
 BUNDLED WITH

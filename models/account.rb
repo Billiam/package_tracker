@@ -51,3 +51,14 @@ class Account < Sequel::Model
     self.crypted_password.blank? || password.present?
   end
 end
+
+# Table: accounts
+# Columns:
+#  id               | integer | PRIMARY KEY DEFAULT nextval('accounts_id_seq'::regclass)
+#  name             | text    |
+#  surname          | text    |
+#  email            | text    |
+#  crypted_password | text    |
+#  role             | text    |
+# Indexes:
+#  accounts_pkey | PRIMARY KEY btree (id)

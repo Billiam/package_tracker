@@ -6,3 +6,12 @@ class Preference < Sequel::Model
     end
   end
 end
+
+# Table: preferences
+# Columns:
+#  id          | integer | PRIMARY KEY DEFAULT nextval('preferences_id_seq'::regclass)
+#  key         | text    |
+#  value       | text    |
+#  description | text    |
+# Indexes:
+#  preferences_pkey | PRIMARY KEY btree (id)
