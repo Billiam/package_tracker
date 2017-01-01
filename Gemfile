@@ -38,6 +38,8 @@ gem 'gmail'
 gem 'active_shipping'
 
 gem 'webpush'
+gem 'rack-parser'
+gem 'oj', require: false
 
 group :development do
   gem 'sequel-annotate'

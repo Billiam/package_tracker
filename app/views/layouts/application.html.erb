@@ -6,9 +6,13 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <meta name=viewport content='width=device-width,initial-scale=1' />
   <link rel="manifest" href="/webmanifest.json" />
+  <script>
+    window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV.fetch('VAPID_PUBLIC_KEY')).bytes %>);
+  </script>
   <%= favicon_tag "favicon.png" %>
   <%= stylesheet_link_tag 'app' %>
 <body>
 <%= yield %>
+<%= javascript_include_tag 'application' %>
 </body>
 </html>

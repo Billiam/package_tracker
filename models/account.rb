@@ -55,8 +55,6 @@ end
 # Table: accounts
 # Columns:
 #  id               | integer | PRIMARY KEY DEFAULT nextval('accounts_id_seq'::regclass)
-#  name             | text    |
-#  surname          | text    |
 #  email            | text    |
 #  crypted_password | text    |
 #  role             | text    |

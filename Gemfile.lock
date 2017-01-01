@@ -39,6 +39,7 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
+    oj (2.18.0)
     padrino (0.13.3.3)
       padrino-admin (= 0.13.3.3)
       padrino-cache (= 0.13.3.3)
@@ -77,6 +78,8 @@ GEM
     pg (0.19.0)
     quantified (1.0.1)
     rack (1.6.5)
+    rack-parser (0.7.0)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -122,8 +125,10 @@ DEPENDENCIES
   dotenv
   erubis (~> 2.7.0)
   gmail
+  oj
   padrino (= 0.13.3.3)
   pg
+  rack-parser
   rack-test
   rake
   rspec
