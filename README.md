@@ -52,6 +52,8 @@ Create cron tasks which will poll your Gmail inbox and update tracking informati
 Run `bundle exec rake generate_vapid` and add the resulting
 `VAPID_PUBLIC_KEY` and `VAPID PRIVATE_KEY` values to your `.env` file.
 
+To support web push notifications, the Package Tracker application must either be using https, or must either be running on localhost.
+
 
 ## View dashboard
 
