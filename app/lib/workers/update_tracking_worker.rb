@@ -17,8 +17,8 @@ class UpdateTrackingWorker
       # end
 
       item.delivered_at = local_time(tracking_data.actual_delivery_time) if tracking_data.actual_delivery_time
-      item.latest_event = tracking_data.message
       last_event = tracking_data.shipment_events.last
+
       if last_event
         time = local_time(last_event.time).strftime("%a, %b %e at %R")
         item.latest_event = "#{last_event.message} #{time} - #{last_event.location}"
