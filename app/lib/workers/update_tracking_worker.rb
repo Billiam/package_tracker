@@ -1,6 +1,6 @@
 class UpdateTrackingWorker
   def perform
-    updated_records = TrackingNumber.active.each do |item|
+    updated_records = TrackingNumber.active.map do |item|
       begin
         tracking_data = tracker[item.carrier.to_sym].find_tracking_info item.number
       rescue ActiveShipping::ShipmentNotFound => e
@@ -31,7 +31,7 @@ class UpdateTrackingWorker
       item.save_changes
     end.compact
 
-    PushNotificationsWorker.new.perform(updated_records) if updates.any?
+    PushNotificationsWorker.new.perform(updated_records) if updated_records.any?
   end
 
   private

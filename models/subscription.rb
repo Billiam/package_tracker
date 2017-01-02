@@ -25,11 +25,11 @@ class Subscription < Sequel::Model
   def interested_in?(tracking)
     return true if notify_all_updates?
 
-    if tracking.previous_changes == null
+    if tracking.previous_changes == null || tracking.previous_changes[:status][0].blank?
       return notify_new?
     end
 
-    return true if tracking.previous_changes[:delivered_at] && notify_delivered?
+    return true if tracking.previous_changes[:delivered_at] && tracking.previous_changes[0].blank? && notify_delivered?
     return true if tracking.previous_changes[:scheduled_for] && notify_estimate_date?
 
     false

@@ -18,7 +18,7 @@ class PushNotificationsWorker
       title = "Package created"
       if package.previous_changes
         title = "Package schedule changed" if package.previous_changes[:scheduled_for]
-        title = "Package delivered" if package.previous_changes[:delivered_at][0].empty?
+        title = "Package delivered" if package.previous_changes[:delivered_at][0].blank?
       end
 
       Webpush.payload_send(
