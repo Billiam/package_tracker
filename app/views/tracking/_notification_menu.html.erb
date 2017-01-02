@@ -1,0 +1,33 @@
+<% if notification_enabled? %>
+<div class="notifications hidden">
+  <span class="push-label">
+    Push Notifications
+  </span>
+
+  <div class="preferences">
+    <div class="setting">
+      <input class="notification_preference" id="notify_all" type="checkbox" name="notify_all" />
+      <label for="notify_all">Notify for all changes</label>
+    </div>
+
+    <div class="setting">
+      <input class="notification_preference"  id="notify_new" type="checkbox" name="notify_new" />
+      <label for="notify_new">Notify for new packages</label>
+    </div>
+
+    <div class="setting">
+      <input class="notification_preference"  id="notify_scheduled" type="checkbox" name="notify_scheduled" />
+      <label for="notify_scheduled">Notify when scheduled delivery changes</label>
+    </div>
+
+    <div class="setting">
+      <input class="notification_preference" id="notify_delivered" type="checkbox" name="notify_delivered" />
+      <label for="notify_delivered">Notify on delivery</label>
+    </div>
+
+    <button class="btn submit">
+      Save Notifications
+    </button>
+  </div>
+</div>
+<% end %>
