@@ -1,4 +1,8 @@
 (function() {
+  if (window.env && window.env !== 'development') {
+    console.log = function() {}
+  }
+
   const OPTIONS = ['notify_all', 'notify_delivered', 'notify_scheduled', 'notify_new'];
 
   var preferences = {
@@ -62,7 +66,6 @@
 
 
   var worker = {
-
     init: function() {
       if ( ! worker.supported()) {
         console.warn('Service worker is not supported');
@@ -89,6 +92,8 @@
             throw error;
           }
         })
+      }).catch(function() {
+        return {};
       })
     },
 
@@ -114,7 +119,12 @@
     getSubscription: function() {
       return navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
         return serviceWorkerRegistration.pushManager.getSubscription()
-      })
+      }).then(function(subscription) {
+        if ( ! subscription) {
+          throw new Error('No subscription found');
+        }
+        return subscription;
+      });
     },
 
     storeOptions: function(subscription, options) {
@@ -138,7 +148,7 @@
       return worker.getSubscription().then(function(subscription) {
         worker.storeOptions(subscription, {});
       }).catch(function(error) {
-        console.error(error);
+        console.error('Could not update subscription information', error);
       });
     },
 
@@ -172,13 +182,8 @@
         return;
       }
 
-      if (notification.permissionGranted()) {
+      if ( ! notification.permissionDenied()) {
         notification.startWorker();
-        return;
-      }
-
-      if( ! notification.permissionDenied()) {
-        notification.requestPermission();
       }
     },
 
