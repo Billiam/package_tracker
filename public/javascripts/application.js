@@ -3,10 +3,11 @@
 
   var preferences = {
     init: function() {
-      var elements = document.getElementsByClassName('push_label');
+      var elements = document.getElementsByClassName('notifications');
       if (elements.length == 0) {
         return;
       }
+
       preferences.bind(elements[0]);
     },
 
@@ -16,29 +17,43 @@
         prefs[option] = document.getElementById(option).checked;
       });
 
-      worker.setOptions(prefs);
+      worker.setOptions(prefs).then(function() {
+        preferences.toggleVisible(false);
+      });
+    },
+
+    activateNotifications: function() {
+      document.getElementsByClassName('push_label')[0].classList.add('active');
+    },
+
+    deactivateNotifications: function() {
+      document.getElementsByClassName('push_label')[0].classList.remove('active');
     },
 
     loadSettings: function(settings) {
       var subscribed = OPTIONS.some(function(preference) { return settings.hasOwnProperty(preference) && settings[preference] === true });
-      if ( ! subscribed) {
-        return;
+      if (subscribed) {
+        preferences.activateNotifications();
+        OPTIONS.forEach(function(option) {
+          document.getElementById(option).checked = settings[option] === true;
+        });
       }
-
-      document.getElementsByClassName('push_label')[0].classList.add('active');
-      OPTIONS.forEach(function(option) {
-        document.getElementById(option).checked = settings[option] === true;
-      });
+      document.getElementsByClassName('notifications')[0].classList.remove('hidden');
     },
 
-    bind: function(element) {
-      element.addEventListener('click', function(e) {
+    toggleVisible: function(show) {
+      var preferenceBlock = document.getElementsByClassName('preferences')[0];
+      var displayBlock = show === undefined ? preferenceBlock.style.display == 'none' : show;
+      preferenceBlock.style.display = displayBlock ? 'block' : 'none';
+    },
 
-        var preferenceBlock = document.getElementsByClassName('preferences')[0];
-        preferenceBlock.style.display = preferenceBlock.style.display == 'none' ? 'block' : 'none';
+    bind: function(node) {
+      var label = node.getElementsByClassName('push_label')[0];
+      label.addEventListener('click', function(e) {
+        preferences.toggleVisible();
       });
 
-      var button = document.getElementsByTagName('button')[0];
+      var button = node.getElementsByTagName('button')[0];
       button.addEventListener('click', function(e) {
         preferences.submit();
       });
@@ -120,7 +135,7 @@
     },
 
     removeSubscription: function() {
-      worker.getSubscription().then(function(subscription) {
+      return worker.getSubscription().then(function(subscription) {
         worker.storeOptions(subscription, {});
       }).catch(function(error) {
         console.error(error);
@@ -128,7 +143,7 @@
     },
 
     saveSubscription: function(options) {
-      worker.subscribe().then(function(subscription) {
+      return worker.subscribe().then(function(subscription) {
         worker.storeOptions(subscription, options)
       }).catch(function(error) {
         console.warn(error);
@@ -139,9 +154,13 @@
     setOptions: function(options) {
       var anySubscription = OPTIONS.some(function(option) { return options[option] === true });
       if (anySubscription) {
-        return worker.saveSubscription(options);
+        return worker.saveSubscription(options).then(function() {
+          preferences.activateNotifications();
+        });
       } else {
-        return worker.removeSubscription();
+        return worker.removeSubscription().then(function() {
+          preferences.deactivateNotifications();
+        });
       }
     }
   };
