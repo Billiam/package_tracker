@@ -62,3 +62,26 @@ li {
   font-style: italic;
   font-size: 11px;
 }
+
+.push_label.active {
+  color: #FF0296;
+}
+.notifications {
+  color: #777;
+  cursor: pointer;
+}
+
+.preferences {
+  line-height: 2;
+  color: #eee;
+}
+.btn {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background-color: #AB116B;
+  border-radius: 3px;
+  padding: 8px;
+  border-style: solid;
+  border: 0;
+  font-weight: bold;
+}

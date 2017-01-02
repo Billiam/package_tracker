@@ -11,6 +11,12 @@
   </script>
   <%= favicon_tag "favicon.png" %>
   <%= stylesheet_link_tag 'app' %>
+
+  <!--[if lte IE 11]>
+  <%= javascript_include_tag 'promise' %>
+  <%= javascript_include_tag 'fetch' %>
+  <![endif]-->
+
 <body>
 <%= yield %>
 <%= javascript_include_tag 'application' %>
