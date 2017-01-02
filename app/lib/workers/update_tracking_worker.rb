@@ -1,6 +1,6 @@
 class UpdateTrackingWorker
   def perform
-    TrackingNumber.active.each do |item|
+    updated_records = TrackingNumber.active.each do |item|
       begin
         tracking_data = tracker[item.carrier.to_sym].find_tracking_info item.number
       rescue ActiveShipping::ShipmentNotFound => e
@@ -27,8 +27,11 @@ class UpdateTrackingWorker
       end
 
       item.raise_on_save_failure = false
-      item.save if item.changed_columns.any?
-    end
+
+      item.save_changes
+    end.compact
+
+    PushNotificationsWorker.new.perform(updated_records) if updates.any?
   end
 
   private
