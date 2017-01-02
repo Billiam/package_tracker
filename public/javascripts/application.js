@@ -48,7 +48,7 @@
     toggleVisible: function(show) {
       var preferenceBlock = document.getElementsByClassName('preferences')[0];
       var displayBlock = show === undefined ? preferenceBlock.style.display == 'none' : show;
-      preferenceBlock.style.display = displayBlock ? 'block' : 'none';
+      preferenceBlock.classList.toggle('expanded', show);
     },
 
     bind: function(node) {
