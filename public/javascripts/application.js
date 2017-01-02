@@ -27,11 +27,11 @@
     },
 
     activateNotifications: function() {
-      document.getElementsByClassName('push_label')[0].classList.add('active');
+      document.getElementsByClassName('push-label')[0].classList.add('active');
     },
 
     deactivateNotifications: function() {
-      document.getElementsByClassName('push_label')[0].classList.remove('active');
+      document.getElementsByClassName('push-label')[0].classList.remove('active');
     },
 
     loadSettings: function(settings) {
@@ -52,7 +52,7 @@
     },
 
     bind: function(node) {
-      var label = node.getElementsByClassName('push_label')[0];
+      var label = node.getElementsByClassName('push-label')[0];
       label.addEventListener('click', function(e) {
         preferences.toggleVisible();
       });
