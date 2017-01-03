@@ -10,14 +10,14 @@ self.addEventListener("push", function(event)  {
     data: {
       messageCount: 1,
       url: data.url || '/',
-      trackingNumber: data.tracking_number
+      trackingNumbers: [data.tracking_number]
     }
   };
 
   event.waitUntil(
     registration.getNotifications().then(function(notifications) {
       for(var i = 0, l = notifications.length; i < l; i++) {
-        if (notifications[i].data && notifications[i].data.trackingNumber) {
+        if (notifications[i].data && notifications[i].data.trackingNumbers) {
           return notifications[i];
         }
       }
@@ -25,11 +25,16 @@ self.addEventListener("push", function(event)  {
     }).then(function(currentNotification) {
       if (currentNotification) {
         var messageCount = currentNotification.data.messageCount + 1;
-        title = messageCount + ' new tracking updates';
-        delete options.body;
-        options.silent = true;
+
+        if (currentNotification.data.trackingNumbers.indexOf(data.tracking_number) === -1) {
+          options.data.trackingNumbers = currentNotification.data.trackingNumbers.concat(options.data.trackingNumbers);
+          title = messageCount + ' updates to ' + options.data.trackingNumbers.length + ' packages';
+          delete options.body;
+          options.silent = true;
+          options.data.url = '/';
+        }
+
         options.data.messageCount = messageCount;
-        options.data.url = '/';
         currentNotification.close();
       }
 

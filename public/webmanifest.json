@@ -1,3 +1,11 @@
 {
-  "name": "Tracker"
+  "name": "Tracker",
+  "short_name": "Tracker",
+  "description": "Package tracking dashboard",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "64x64"
+    }
+  ]
 }
