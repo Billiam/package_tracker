@@ -25,10 +25,15 @@ self.addEventListener("push", function(event)  {
     }).then(function(currentNotification) {
       if (currentNotification) {
         var messageCount = currentNotification.data.messageCount + 1;
-
         if (currentNotification.data.trackingNumbers.indexOf(data.tracking_number) === -1) {
           options.data.trackingNumbers = currentNotification.data.trackingNumbers.concat(options.data.trackingNumbers);
-          title = messageCount + ' updates to ' + options.data.trackingNumbers.length + ' packages';
+          var packageCount = options.data.trackingNumbers.length;
+          if (messageCount > packageCount) {
+            title = messageCount + ' updates to ' + packageCount + ' packages';
+          } else {
+            title = packagesCount + ' packages updated';
+          }
+
           delete options.body;
           options.silent = true;
           options.data.url = '/';
