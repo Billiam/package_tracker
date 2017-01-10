@@ -31,7 +31,7 @@ self.addEventListener("push", function(event)  {
           if (messageCount > packageCount) {
             title = messageCount + ' updates to ' + packageCount + ' packages';
           } else {
-            title = packagesCount + ' packages updated';
+            title = packageCount + ' packages updated';
           }
 
           delete options.body;
