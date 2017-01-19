@@ -1,7 +1,7 @@
 module EmailTracker::Ups
   BODY_EXPRESSIONS = [
     /\*Tracking Number:\* ([a-zA-Z0-9]{10}\d{8})\b/,
-    /Tracking Number:?(?:\s|=C2=AO)([a-zA-Z0-9]{10}\d{8})\b/
+    /Tracking Number:?(?:\s|=C2=A0)([a-zA-Z0-9]{10}\d{8})\b/
   ]
   SUBJECT_EXPRESSIONS = [
     /Tracking Number ([a-zA-Z0-9]{10}\d{8})\b/
