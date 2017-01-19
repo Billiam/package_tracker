@@ -17,14 +17,17 @@ module EmailTracker::Ups
   private
 
   def self.find_tracking_number(message)
-    result = BODY_EXPRESSIONS.detect do |expression|
-      message.body[expression, 1]
+    BODY_EXPRESSIONS.each do |expression|
+      result = message.body[expression, 1]
+      return result if result
     end
-    return result if result
 
-    SUBJECT_EXPRESSIONS.detect do |expression|
-      message.subject[expression, 1]
+    SUBJECT_EXPRESSIONS.each do |expression|
+      result = message.subject[expression, 1]
+      return result if result
     end
+
+    nil
   end
 end
 
