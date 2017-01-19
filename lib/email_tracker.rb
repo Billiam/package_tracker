@@ -15,7 +15,7 @@ module EmailTracker
         return result if result
       end
 
-      Padrino.logger.warn "Could not parse email: #{message.subject}"
+      Padrino.logger.error "Could not parse email: #{message.subject}"
 
       nil
     end
