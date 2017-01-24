@@ -1,7 +1,7 @@
 Trackify::Admin.controllers :tracking_numbers do
   get :index do
     @title = "Tracking_numbers"
-    @tracking_numbers = TrackingNumber.order(:scheduled_for).all
+    @tracking_numbers = TrackingNumber.reverse_order(:created_at).all
     render 'tracking_numbers/index'
   end
 
