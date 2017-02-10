@@ -14,6 +14,20 @@ class TrackingNumber < Sequel::Model
     end
   end
 
+  def just_created?
+    previous_changes.nil? || (previous_changes[:status] && previous_changes[:status][0].blank?)
+  end
+
+  def just_delivered?
+    return false unless previous_changes
+    previous_changes[:delivered_at] && previous_changes[:delivered_at][0].blank?
+  end
+
+  def changed_schedule?
+    return false unless previous_changes
+    previous_changes[:scheduled_for]
+  end
+
   def validate
     super
     validates_presence [:number, :carrier]
