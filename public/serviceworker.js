@@ -26,8 +26,15 @@ self.addEventListener("push", function(event)  {
       if (currentNotification) {
         var messageCount = currentNotification.data.messageCount + 1;
         if (currentNotification.data.trackingNumbers.indexOf(data.tracking_number) === -1) {
-          options.data.trackingNumbers = currentNotification.data.trackingNumbers.concat(options.data.trackingNumbers);
-          var packageCount = options.data.trackingNumbers.length;
+          var uniquePackages = currentNotification.data.trackingNumbers
+            .concat(options.data.trackingNumbers)
+            .filter(function(value, index, self) {
+              return self.indexOf(value) === index;
+            });
+
+          options.data.trackingNumbers = uniquePackages;
+          var packageCount = uniquePackage.length;
+
           if (messageCount > packageCount) {
             title = messageCount + ' updates to ' + packageCount + ' packages';
           } else {
