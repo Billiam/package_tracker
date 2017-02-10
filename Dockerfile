@@ -9,7 +9,7 @@ WORKDIR /src/trackify
 
 RUN gem install bundler -v 1.12.5
 
-COPY Gemfile* /src/trackify/
+COPY Gemfile Gemfile.lock /src/trackify/
 RUN bundle install --jobs 4
 
 COPY . /src/trackify
