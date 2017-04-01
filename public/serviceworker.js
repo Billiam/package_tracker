@@ -33,7 +33,7 @@ self.addEventListener("push", function(event)  {
             });
 
           options.data.trackingNumbers = uniquePackages;
-          var packageCount = uniquePackage.length;
+          var packageCount = uniquePackages.length;
 
           if (messageCount > packageCount) {
             title = messageCount + ' updates to ' + packageCount + ' packages';
