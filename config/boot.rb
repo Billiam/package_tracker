@@ -57,6 +57,8 @@ Padrino.dependency_paths.unshift Padrino.root('config/initializers/*.rb')
 Padrino.before_load do
   ENV['TZ'] = 'America/Chicago'
   Time.zone = 'America/Chicago'
+
+  Padrino.dependency_paths << Padrino.root('app/uploaders/**/*.rb')
 end
 
 ##

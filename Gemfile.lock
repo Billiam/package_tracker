@@ -9,14 +9,25 @@ GEM
     active_utils (3.2.4)
       activesupport (>= 3.2, < 5.1.0)
       i18n
+    activemodel (5.0.1)
+      activesupport (= 5.0.1)
     activesupport (5.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     bcrypt (3.1.11)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+    carrierwave-sequel (0.1.1)
+      carrierwave
+      sequel
     concurrent-ruby (1.0.3)
     diff-lcs (1.2.5)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
     enumerable-lazy (0.0.2)
     erubis (2.7.0)
@@ -26,18 +37,32 @@ GEM
     gmail_xoauth (0.4.2)
       oauth (>= 0.3.6)
     hkdf (0.3.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jwt (1.5.6)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mechanize (2.7.5)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0)
+      mime-types (>= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.6)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     mime-types (2.99.3)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     moneta (0.8.1)
     mustermann19 (0.4.4)
       enumerable-lazy
+    net-http-digest_auth (1.4.1)
+    net-http-persistent (2.9.4)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    ntlm-http (0.1.1)
     oauth (0.5.1)
     oj (2.18.0)
     padrino (0.13.3.3)
@@ -111,9 +136,13 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.4)
     webpush (0.3.1)
       hkdf (~> 0.2)
       jwt
+    webrobots (0.1.2)
 
 PLATFORMS
   ruby
@@ -122,9 +151,12 @@ DEPENDENCIES
   active_shipping
   activesupport (>= 3.1)
   bcrypt
+  carrierwave
+  carrierwave-sequel
   dotenv
   erubis (~> 2.7.0)
   gmail
+  mechanize
   oj
   padrino (= 0.13.3.3)
   pg

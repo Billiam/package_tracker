@@ -211,9 +211,48 @@
     }
   };
 
+  var mailbox = {
+    init: function() {
+      var mailSections = document.getElementsByClassName('mailbox-toggler');
+      if (mailSections.length === 0) {
+        return;
+      }
+      mailbox.bind(mailSections[0]);
+    },
+
+    recalculateHeight: function(element) {
+      element.style.maxHeight = element.scrollHeight + "px";
+    },
+
+    bind: function(element) {
+      var timeout = 200;
+      var throttled;
+      var toggleable = element.getElementsByClassName('toggleable')[0];
+
+      element.addEventListener('click', function() {
+        var classes = toggleable.classList;
+        var expanded = classes.toggle('expanded');
+        classes.toggle('collapsed', !expanded);
+      });
+
+      window.addEventListener('resize', function() {
+        if ( ! throttled) {
+          throttled = setTimeout(function() {
+            throttled = null;
+          }, timeout);
+
+          mailbox.recalculateHeight(toggleable);
+        }
+      });
+
+      mailbox.recalculateHeight(toggleable);
+    }
+  };
+
   var init = function() {
     notification.init();
     preferences.init();
+    mailbox.init();
   };
 
   if (document.readyState !== 'loading') {

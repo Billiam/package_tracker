@@ -3,6 +3,7 @@ log/**/*
 tmp/**/*
 vendor/gems/*
 public/stylesheets/*
+public/uploads
 !vendor/gems/cache/
 .sass-cache/*
 db/*.db

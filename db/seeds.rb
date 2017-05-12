@@ -46,6 +46,8 @@ preferences = {
   'UPS_PASSWORD' => 'UPS User Password',
 
   'USPS_LOGIN' => 'USPS Web Tools Username',
+  'USPS_USERNAME' => 'USPS Username for InformedDelivery',
+  'USPS_PASSWORD' => 'USPS Password for InformedDelivery',
 }
 
 preferences.each do |name, description|

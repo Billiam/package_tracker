@@ -85,13 +85,14 @@ li {
   padding: 0 10px;
   border-radius: 5px;
   max-width: 400px;
-}
-.expanded {
-  max-height: 200px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-color: #2F272A;
-  background-color: black;
+
+  &.expanded {
+    max-height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-color: #2F272A;
+    background-color: black;
+  }
 }
 
 .btn {
@@ -110,3 +111,35 @@ li {
 .hidden {
   opacity: 0;
 }
+.badge {
+  font-weight: normal;
+  display: inline-block;
+  background-color: #AB116B;
+  border: 1px solid #ff67c0;
+  line-height: 1em;
+  height: 1.2em;
+  font-size: 30%;
+  padding: 0.25em 0.4em;
+  border-radius: 0.25em;
+  vertical-align: text-top;
+}
+.letter-photo {
+  width: 100%;
+  object-fit: contain;
+}
+
+.toggleable {
+  overflow: hidden;
+  transition: max-height 0.5s;
+
+  &.collapsed {
+    max-height: 0 !important;
+  }
+}
+
+@keyframes toggle-mailbox {
+  0%   { max-height: 0; }
+  99%  { max-height: 1500px; }
+  100% { max-height: none; }
+}
+

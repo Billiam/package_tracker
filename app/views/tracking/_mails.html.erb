@@ -1,0 +1,18 @@
+<ol class="letters toggleable collapsed">
+  <% mailbox.each do |date, letters| %>
+    <div class="date-block">
+      <span class="day">
+        <%= date.strftime('%e') %>
+      </span>
+      <span class="month">
+        <%= date.strftime('%b') %>
+      </span>
+    </div>
+
+  <% letters.each do |letter| %>
+      <li class="letter">
+        <img class="letter-photo" src="<%= letter.photo_url %>" />
+      </li>
+    <% end %>
+  <% end %>
+</ol>

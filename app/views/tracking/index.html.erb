@@ -1,5 +1,12 @@
 <%= partial 'tracking/notification_menu' %>
 
+<div class="mailbox">
+<% if @mailbox.count > 0 %>
+  <h1 class="mailbox-toggler">Mail <span class="badge"><%= @daily_mail %></span></h1>
+  <%= partial 'tracking/mails', locals: { mailbox: @mailbox } %>
+<% end %>
+</div>
+
 <h1>Deliveries</h1>
 <% if @active.count > 0 %>
   <h2>Upcoming</h2>
