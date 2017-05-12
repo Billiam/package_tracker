@@ -33,6 +33,8 @@ Create api accounts with
 [UPS](https://www.ups.com/upsdeveloperkit), and 
 [USPS](https://www.usps.com/business/web-tools-apis/welcome.htm), and hang onto your credentials.
 
+Optionally, register for [USPS Informed Delivery](https://informeddelivery.usps.com)
+
 Visit `http://localhost:3000/admin/preferences`, and add your api keys and credentials.
 
 Register for email shipment notifications to your notification Gmail account with 
@@ -45,6 +47,7 @@ Create cron tasks which will poll your Gmail inbox and update tracking informati
 ```
 */30 * * * * cd /path/to/project && /path/to/bundle exec rake read_mailbox > /dev/null
 */30 * * * * cd /path/to/project && /path/to/bundle exec rake update_tracking > /dev/null
+* 10 * * * cd /path/to/project && /path/to/bundle exec rake read_usps_mail > /dev/null # for InformedDelivery
 ```
 
 ### [optional] Allow users to opt in to web push notifications

@@ -227,7 +227,7 @@
     bind: function(element) {
       var timeout = 200;
       var throttled;
-      var toggleable = element.getElementsByClassName('toggleable')[0];
+      var toggleable = document.getElementsByClassName('mailbox-toggle')[0];
 
       element.addEventListener('click', function() {
         var classes = toggleable.classList;

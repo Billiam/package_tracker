@@ -137,9 +137,6 @@ li {
   }
 }
 
-@keyframes toggle-mailbox {
-  0%   { max-height: 0; }
-  99%  { max-height: 1500px; }
-  100% { max-height: none; }
+.mailbox-toggler {
+  cursor: pointer;
 }
-
