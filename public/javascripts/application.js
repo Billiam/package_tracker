@@ -229,6 +229,13 @@
       var throttled;
       var toggleable = document.getElementsByClassName('mailbox-toggle')[0];
 
+      var images = toggleable.getElementsByTagName('img');
+      for (var i=0, l=images.length; i < l; i++) {
+        images[i].addEventListener('load', function() {
+          mailbox.recalculateHeight(toggleable);
+        });
+      }
+
       element.addEventListener('click', function() {
         var classes = toggleable.classList;
         var expanded = classes.toggle('expanded');
