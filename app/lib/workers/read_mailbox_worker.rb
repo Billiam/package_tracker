@@ -18,7 +18,7 @@ class ReadMailboxWorker
     inbox_page = agent.get('https://informeddelivery.usps.com/box/pages/secure/HomeAction_input.action')
     image_paths = inbox_page.search('.mailImageBox img').map {|i| i['src'] }
     image_paths.each do |path|
-      temp_path = agent.get(path).save Padrino.root("tmp/trackify/temp-download-#{Time.now.strftime('%Y%m%d')}")
+      temp_path = agent.get(path).save Padrino.root("tmp/trackify/temp-download-#{Time.now.strftime('%Y%m%d')}.jpg")
 
       File.open(temp_path) do |file_handle|
         image = MailImage.new

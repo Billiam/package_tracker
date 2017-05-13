@@ -65,6 +65,7 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  Trackify::App.prerequisites << Padrino.root("app/uploaders/**/*.rb")
 end
 
 Padrino.load!

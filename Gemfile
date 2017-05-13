@@ -29,7 +29,7 @@ gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 # Padrino Stable Gem
-gem 'padrino', '0.13.3.3'
+gem 'padrino', git: 'https://github.com/padrino/padrino-framework.git', ref: '4a80dca4ec0c52a9c7daa2e28d17c1d8cb024e4b'
 
 gem 'dotenv'
 

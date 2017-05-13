@@ -5,11 +5,14 @@ module Trackify
     register ScssInitializer
     register Padrino::Mailer
     register Padrino::Helpers
+    register Padrino::Rendering
+
     enable :sessions
 
     use Rack::Parser, :content_types => {
       'application/json'  => Proc.new { |body| ::Oj.load body }
     }
+
     ##
     # Caching support.
     #
