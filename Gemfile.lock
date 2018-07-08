@@ -162,6 +162,7 @@ DEPENDENCIES
   dotenv
   erubis (~> 2.7.0)
   gmail
+  mail (~> 2.6.5)
   mechanize
   oj
   padrino!
@@ -176,4 +177,4 @@ DEPENDENCIES
   webpush
 
 BUNDLED WITH
-   1.12.5
+   1.14.4

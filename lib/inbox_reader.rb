@@ -15,7 +15,8 @@ class InboxReader
       with_connection do |gmail|
         gmail.inbox.emails(:unread).each do |email|
           email.read!
-          yielder << Message.new(email.from, email.subject, email.message.body.to_s)
+          content = [email.subject, email.message.body.to_s].map {|str| Mail::Encodings.value_decode(str) }
+          yielder << Message.new(email.from, *content)
         end
       end
     end

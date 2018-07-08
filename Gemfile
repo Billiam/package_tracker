@@ -36,6 +36,7 @@ gem 'dotenv'
 # Required APIs
 gem 'gmail'
 gem 'active_shipping'
+gem 'mail', '~> 2.6.5'
 
 gem 'webpush'
 gem 'rack-parser'
@@ -43,7 +44,6 @@ gem 'oj', require: false
 gem 'mechanize', require: false
 gem 'carrierwave'
 gem 'carrierwave-sequel', :require => 'carrierwave/sequel'
-
 group :development do
   gem 'sequel-annotate'
 end
