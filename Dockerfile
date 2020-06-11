@@ -7,7 +7,7 @@ RUN apt-get update \
 # Execute commands on cliniko's folder
 WORKDIR /src/trackify
 
-RUN gem install bundler -v 1.12.5
+RUN gem install bundler -v 1.13.6
 
 COPY Gemfile Gemfile.lock /src/trackify/
 RUN bundle install --jobs 4
