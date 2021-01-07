@@ -104,7 +104,7 @@ GEM
       padrino-core (= 0.14.1.1)
     padrino-support (0.14.1.1)
     pg (0.19.0)
-    rack (2.0.2)
+    rack (2.2.3)
     rack-parser (0.7.0)
       rack
     rack-protection (2.0.8.1)
