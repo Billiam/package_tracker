@@ -35,7 +35,7 @@ gem 'dotenv'
 
 # Required APIs
 gem 'gmail'
-gem 'active_shipping'
+gem 'active_shipping', github: 'billiam/active_shipping', branch: 'feature/usps-ssl' 
 gem 'mail', '~> 2.6.5'
 
 gem 'webpush'
@@ -44,8 +44,11 @@ gem 'oj', require: false
 gem 'mechanize', require: false
 gem 'carrierwave'
 gem 'carrierwave-sequel', :require => 'carrierwave/sequel'
+
 group :development do
   gem 'sequel-annotate'
+  gem 'pry'
+  gem 'pry-byebug', '~> 3.0.0'
 end
 
 # Or Padrino Edge
