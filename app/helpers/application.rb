@@ -6,7 +6,7 @@ Trackify::App.helpers do
       when :usps
         "https://tools.usps.com/go/TrackConfirmAction_input?qtc_tLabels1=#{number}"
       when :fedex
-        "http://www.fedex.com/Tracking?action=track&tracknumbers=#{number}"
+        "https://www.fedex.com/fedextrack/?tracknumbers=#{number}"
       else
         ''
     end
