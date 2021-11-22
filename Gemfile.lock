@@ -1,7 +1,7 @@
 GIT
-  remote: git://github.com/billiam/active_shipping.git
-  revision: d31ece1751af5f61a306927a27c76ae4240afcba
-  branch: feature/usps-ssl
+  remote: https://github.com/billiam/active_shipping
+  revision: 72642ee3caae385c970c4283f8f511c1f83d5709
+  branch: develop
   specs:
     active_shipping (1.9.3)
       active_utils (~> 3.3.1)
@@ -12,7 +12,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    active_utils (3.3.17)
+    active_utils (3.3.19)
       activesupport (>= 4.2)
       i18n
     activemodel (5.0.1)

@@ -35,7 +35,7 @@ gem 'dotenv'
 
 # Required APIs
 gem 'gmail'
-gem 'active_shipping', github: 'billiam/active_shipping', branch: 'feature/usps-ssl' 
+gem 'active_shipping', git: 'https://github.com/billiam/active_shipping', branch: 'develop'
 gem 'mail', '~> 2.6.5'
 
 gem 'webpush'
